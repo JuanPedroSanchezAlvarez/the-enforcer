@@ -1,4 +1,4 @@
-package com.theenforcer.game;
+package com.theenforcer.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -13,10 +13,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.theenforcer.game.TheEnforcerGame;
 
 import java.util.Iterator;
 
-public class GameScreen implements Screen {
+public class DropScreen implements Screen {
 
     final TheEnforcerGame game;
     private OrthographicCamera camera;
@@ -29,7 +30,7 @@ public class GameScreen implements Screen {
     long lastDropTime;
     int dropsGathered;
 
-    public GameScreen(final TheEnforcerGame game) {
+    public DropScreen(final TheEnforcerGame game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
