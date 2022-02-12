@@ -26,6 +26,7 @@ public class TheEnforcerGame extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		shape.dispose();
 		font.dispose();
 	}
 
