@@ -1,12 +1,8 @@
 package com.theenforcer.game.screen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.theenforcer.game.TheEnforcerGame;
 import com.theenforcer.game.character.MainCharacter;
@@ -24,7 +20,7 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, ConstantsConfiguration.SCREEN_WIDTH, ConstantsConfiguration.SCREEN_HEIGHT);
 
-        mainCharacter = new MainCharacter(new Circle(20, 20, 15), new Texture(Gdx.files.internal("characters/main-character.png")),200);
+        mainCharacter = new MainCharacter();
     }
 
     @Override

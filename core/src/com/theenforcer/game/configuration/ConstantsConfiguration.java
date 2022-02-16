@@ -13,8 +13,4 @@ public final class ConstantsConfiguration {
     public static final int MAT_POSITION_x = 0;
     public static final int MAT_POSITION_Y = 0;
 
-    public static final int CHARACTER_SMALL_DIAMETER = 30;
-    public static final int CHARACTER_MEDIUM_DIAMETER = 48;
-    public static final int CHARACTER_LARGE_DIAMETER = 72;
-
 }
