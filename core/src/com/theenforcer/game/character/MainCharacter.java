@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.theenforcer.game.configuration.ConstantsConfiguration;
 
 public class MainCharacter extends Character {
 
@@ -13,10 +16,12 @@ public class MainCharacter extends Character {
     private boolean movingRight;
     private boolean movingUp;
     private boolean movingDown;
+    private TextureRegion imageBody;
+    private Vector2 vectorRotationBody;
 
     public MainCharacter() {
         this.circle = new Circle(0, 0, ConstantsCharacter.CHARACTER_RADIUS_SMALL);
-        this.image = new TextureRegion(new Texture(Gdx.files.internal("characters/main-character.png")));
+        this.image = new TextureRegion(new Texture(Gdx.files.internal("img/characters/main-character.png")));
         this.speed = ConstantsCharacter.CHARACTER_SPEED_NORMAL;
         this.rotationAngle = 0;
 
@@ -24,6 +29,8 @@ public class MainCharacter extends Character {
         this.movingRight = false;
         this.movingUp = false;
         this.movingDown = false;
+        this.imageBody = new TextureRegion(new Texture(Gdx.files.internal("img/characters/main-character2.png")));
+        this.vectorRotationBody = new Vector2(0, 0);
     }
 
     public void processInputs() {
@@ -41,19 +48,19 @@ public class MainCharacter extends Character {
         else if (movingDown && movingRight) { rotationAngle = 225; }
         else if (movingRight && !movingUp && !movingDown) { rotationAngle = 270; }
         else if (movingRight && movingUp) { rotationAngle = 315; }
+
+        vectorRotationBody.set(Gdx.input.getX() - circle.x, ConstantsConfiguration.SCREEN_HEIGHT - Gdx.input.getY() - circle.y);
     }
 
     public void update() {
         super.update();
         if (movingLeft) { circle.x -= speed * Gdx.graphics.getDeltaTime(); } else if (movingRight) { circle.x += speed * Gdx.graphics.getDeltaTime(); }
         if (movingDown) { circle.y -= speed * Gdx.graphics.getDeltaTime(); } else if (movingUp) { circle.y += speed * Gdx.graphics.getDeltaTime(); }
-
-        if (circle.x < 15) circle.x = 15;
-        if (circle.x > 800 - 15) circle.x = 800 - 15;
     }
 
     public void render(final SpriteBatch batch) {
         super.render(batch);
+        batch.draw(imageBody, circle.x - circle.radius, circle.y - circle.radius, circle.radius, circle.radius, circle.radius * 2, circle.radius * 2, 1, 1, vectorRotationBody.angleDeg() -90);
     }
 
 }

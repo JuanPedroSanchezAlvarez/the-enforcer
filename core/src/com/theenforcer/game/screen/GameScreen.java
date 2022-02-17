@@ -1,8 +1,11 @@
 package com.theenforcer.game.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.theenforcer.game.TheEnforcerGame;
 import com.theenforcer.game.character.MainCharacter;
@@ -13,6 +16,8 @@ public class GameScreen implements Screen {
     private final TheEnforcerGame game;
     private final OrthographicCamera camera;
 
+    private final Pixmap pixmap;
+    private final Cursor cursor;
     private final MainCharacter mainCharacter;
 
     public GameScreen(final TheEnforcerGame game) {
@@ -20,6 +25,8 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, ConstantsConfiguration.SCREEN_WIDTH, ConstantsConfiguration.SCREEN_HEIGHT);
 
+        pixmap = new Pixmap(Gdx.files.internal("img/cursors/cursor-blue.png"));
+        cursor = Gdx.graphics.newCursor(pixmap, 16, 16);
         mainCharacter = new MainCharacter();
     }
 
@@ -41,7 +48,9 @@ public class GameScreen implements Screen {
         // RENDER
         game.batch.begin();
         mainCharacter.render(game.batch);
+        Gdx.graphics.setCursor(cursor);
         game.batch.end();
+
     }
 
     @Override
@@ -57,6 +66,8 @@ public class GameScreen implements Screen {
     public void hide() {}
 
     @Override
-    public void dispose() {}
+    public void dispose() {
+        cursor.dispose();
+    }
 
 }
