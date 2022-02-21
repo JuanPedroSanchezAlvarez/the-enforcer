@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.theenforcer.game.TheEnforcerGame;
-import com.theenforcer.game.button.MenuButton;
+import com.theenforcer.game.button.ConstantsButton;
+import com.theenforcer.game.button.TextButton;
 import com.theenforcer.game.configuration.ConstantsConfiguration;
 
 public class MainMenuScreen implements Screen {
@@ -14,14 +15,14 @@ public class MainMenuScreen implements Screen {
     private final TheEnforcerGame game;
     private final OrthographicCamera camera;
 
-    private final MenuButton menuButton;
+    private final TextButton startButton;
 
     public MainMenuScreen(final TheEnforcerGame game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, ConstantsConfiguration.SCREEN_WIDTH, ConstantsConfiguration.SCREEN_HEIGHT);
 
-        menuButton = new MenuButton(400, 400, 500, 200, "Hi! I'm YellowBlue!");
+        startButton = new TextButton(400, 400, 500, 200, ConstantsButton.BUTTON_COLOR, ConstantsButton.BORDER_COLOR, "START GAME");
     }
 
     @Override
@@ -34,13 +35,11 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.shape.begin(ShapeRenderer.ShapeType.Filled);
-        menuButton.draw(game.shape);
+        startButton.render(game.shape);
         game.shape.end();
 
         game.batch.begin();
-        menuButton.drawText(game.font, game.batch);
-        game.font.draw(game.batch, "Welcome to Drop!!! ", 100, 150);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 100, 100);
+        startButton.renderText(game.batch);
         game.batch.end();
 
         if (Gdx.input.isTouched()) {

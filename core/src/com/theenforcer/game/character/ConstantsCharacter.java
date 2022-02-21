@@ -12,7 +12,7 @@ public final class ConstantsCharacter {
     public static final int CHARACTER_DIAMETER_LARGE = 72;
 
     public static final int CHARACTER_SPEED_SLOW = 100;
-    public static final int CHARACTER_SPEED_NORMAL = 200;
-    public static final int CHARACTER_SPEED_FAST = 300;
+    public static final int CHARACTER_SPEED_NORMAL = 150;
+    public static final int CHARACTER_SPEED_FAST = 200;
 
 }
