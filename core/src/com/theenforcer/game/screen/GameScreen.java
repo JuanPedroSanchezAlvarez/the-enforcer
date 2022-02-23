@@ -2,22 +2,20 @@ package com.theenforcer.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Cursor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.theenforcer.game.TheEnforcerGame;
 import com.theenforcer.game.character.MainCharacter;
 import com.theenforcer.game.configuration.ConstantsConfiguration;
+import com.theenforcer.game.util.MouseCursorUtils;
 
 public class GameScreen implements Screen {
 
     private final TheEnforcerGame game;
     private final OrthographicCamera camera;
 
-    private final Pixmap pixmap;
-    private final Cursor cursor;
+    private final Texture background;
+
     private final MainCharacter mainCharacter;
 
     public GameScreen(final TheEnforcerGame game) {
@@ -25,8 +23,9 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, ConstantsConfiguration.SCREEN_WIDTH, ConstantsConfiguration.SCREEN_HEIGHT);
 
-        pixmap = new Pixmap(Gdx.files.internal("img/cursors/cursor-blue.png"));
-        cursor = Gdx.graphics.newCursor(pixmap, 16, 16);
+        background = new Texture(Gdx.files.internal("hephaestus.png"));
+
+        Gdx.graphics.setCursor(MouseCursorUtils.getGameCursor());
         mainCharacter = new MainCharacter();
     }
 
@@ -47,8 +46,9 @@ public class GameScreen implements Screen {
 
         // RENDER
         game.batch.begin();
+        game.batch.draw(background, 0, 0);
         mainCharacter.render(game.batch);
-        Gdx.graphics.setCursor(cursor);
+        //Gdx.graphics.setCursor(cursor);
         game.batch.end();
 
     }
@@ -66,8 +66,6 @@ public class GameScreen implements Screen {
     public void hide() {}
 
     @Override
-    public void dispose() {
-        cursor.dispose();
-    }
+    public void dispose() {}
 
 }
