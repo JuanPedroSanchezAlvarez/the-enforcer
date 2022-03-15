@@ -1,6 +1,7 @@
 package com.theenforcer.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -11,7 +12,7 @@ import com.theenforcer.game.button.TextButton;
 import com.theenforcer.game.configuration.ConstantsConfiguration;
 import com.theenforcer.game.util.MouseCursorUtils;
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen implements Screen, InputProcessor {
 
     private final TheEnforcerGame game;
     private final OrthographicCamera camera;
@@ -32,7 +33,9 @@ public class MainMenuScreen implements Screen {
     }
 
     @Override
-    public void show() {}
+    public void show() {
+        game.inputMultiplexer.addProcessor(this);
+    }
 
     @Override
     public void render(float delta) {
@@ -65,9 +68,51 @@ public class MainMenuScreen implements Screen {
     public void resume() {}
 
     @Override
-    public void hide() {}
+    public void hide() {
+        game.inputMultiplexer.removeProcessor(this);
+    }
 
     @Override
     public void dispose() {}
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(float amountX, float amountY) {
+        return false;
+    }
 
 }

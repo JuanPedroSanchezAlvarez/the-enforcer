@@ -2,6 +2,7 @@ package com.theenforcer.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,12 +16,15 @@ public class TheEnforcerGame extends Game {
 
 	public SpriteBatch batch;
 	public ShapeRenderer shape;
+	public InputMultiplexer inputMultiplexer;
 
 	public static LabelStyle labelStyle;
 
 	public void create () {
 		batch = new SpriteBatch();
 		shape = new ShapeRenderer();
+		inputMultiplexer = new InputMultiplexer();
+		Gdx.input.setInputProcessor(inputMultiplexer);
 
 		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("font/BlackOpsOne-Regular400-64px.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();

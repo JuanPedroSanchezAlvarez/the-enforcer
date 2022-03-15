@@ -48,7 +48,6 @@ public class GameScreen implements Screen {
         game.batch.begin();
         game.batch.draw(background, 0, 0);
         mainCharacter.render(game.batch);
-        //Gdx.graphics.setCursor(cursor);
         game.batch.end();
 
     }
