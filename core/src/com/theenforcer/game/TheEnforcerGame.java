@@ -26,11 +26,11 @@ public class TheEnforcerGame extends Game {
 		inputMultiplexer = new InputMultiplexer();
 		Gdx.input.setInputProcessor(inputMultiplexer);
 
-		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("font/BlackOpsOne-Regular400-64px.ttf"));
+		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("font/BlackOpsOne-Regular.ttf"));
 		FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();
-		fontParameters.size = 48;
+		fontParameters.size = 32;
 		fontParameters.color = Color.WHITE;
-		fontParameters.borderWidth = 2;
+		fontParameters.borderWidth = 0;
 		fontParameters.borderColor = Color.BLACK;
 		fontParameters.borderStraight = true;
 		fontParameters.minFilter = Texture.TextureFilter.Linear;
